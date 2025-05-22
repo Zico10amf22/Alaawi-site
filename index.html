@@ -1,12 +1,81 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>موقع علاوي</title>
-  </head>
-  <body>
-    <h1>أهلاً بك في موقع علاوي</h1>
-    <p>الموقع جاهز الآن!</p>
-  </body>
-</html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>علاوي فد شي ويطك بالكاع</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 30px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+      max-width: 300px;
+      font-size: 16px;
+    }
+    .section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
 
-Add index file رسالة
+  <h1>علاوي فد شي ويطك بالكاع</h1>
+  <p>مرحبا بكم في موقع علاوي فد شي ويطك بالكاع</p>
+
+  <div class="section">
+    <h3>إنشاء غرفة (للمشرف)</h3>
+    <input type="text" id="roomCode" placeholder="رمز الغرفة">
+    <input type="text" id="adminCode" placeholder="رمز المشرف">
+    <button onclick="createRoom()">إنشاء الغرفة</button>
+  </div>
+
+  <div class="section">
+    <h3>الدخول إلى غرفة</h3>
+    <input type="text" id="username" placeholder="اسمك">
+    <input type="text" id="joinRoomCode" placeholder="رمز الغرفة">
+    <button onclick="joinRoom()">دخول</button>
+  </div>
+
+  <script>
+    function createRoom() {
+      const roomCode = document.getElementById('roomCode').value.trim();
+      const adminCode = document.getElementById('adminCode').value.trim();
+      if (roomCode && adminCode) {
+        alert("تم إنشاء الغرفة برمز: " + roomCode + "\nورمز المشرف: " + adminCode);
+        // مستقبلاً نوجه إلى صفحة الغرفة
+      } else {
+        alert("يرجى إدخال الرمزين");
+      }
+    }
+
+    function joinRoom() {
+      const username = document.getElementById('username').value.trim();
+      const joinCode = document.getElementById('joinRoomCode').value.trim();
+      if (username && joinCode) {
+        alert(username + " دخل الغرفة برمز: " + joinCode);
+        // مستقبلاً نوجه إلى صفحة الغرفة
+      } else {
+        alert("يرجى إدخال الاسم والرمز");
+      }
+    }
+  </script>
+
+</body>
+</html>
