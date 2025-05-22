@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>علاوي فد شي ويطك بالكاع</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; text-align: center; padding: 20px; }
+    .box { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: 20px auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, button { padding: 10px; width: 100%; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>علاوي فد شي ويطك بالكاع</h1>
+  <p>مرحبا بكم في موقع علاوي فد شي ويطك بالكاع</p>  <div class="box">
+    <h2>إنشاء غرفة (للمشرف)</h2>
+    <input id="roomName" placeholder="اسم الغرفة" />
+    <input id="roomCode" placeholder="رمز الغرفة" />
+    <input id="adminCode" placeholder="رمز المشرف" />
+    <button onclick="createRoom()">إنشاء</button>
+  </div>  <div class="box">
+    <h2>الدخول إلى غرفة</h2>
+    <input id="joinRoomCode" placeholder="رمز الغرفة" />
+    <input id="userName" placeholder="اسمك" />
+    <button onclick="joinRoom()">دخول</button>
+  </div>  <script>
+    function createRoom() {
+      const roomName = document.getElementById('roomName').value.trim();
+      const roomCode = document.getElementById('roomCode').value.trim();
+      const adminCode = document.getElementById('adminCode').value.trim();
+      if (!roomName || !roomCode || !adminCode) return alert("يرجى تعبئة كل الحقول");
+      localStorage.setItem(`room-${roomCode}`, JSON.stringify({ roomName, adminCode, users: [] }));
+      alert("تم إنشاء الغرفة!");
+    }
+
+    function joinRoom() {
+      const roomCode = document.getElementById('joinRoomCode').value.trim();
+      const userName = document.getElementById('userName').value.trim();
+      if (!roomCode || !userName) return alert("يرجى تعبئة كل الحقول");
+      const roomData = localStorage.getItem(`room-${roomCode}`);
+      if (!roomData) return alert("الغرفة غير موجودة");
+      let room = JSON.parse(roomData);
+      if (room.users.includes(userName)) return alert("هذا الاسم مستخدم بالفعل");
+      room.users.push(userName);
+      localStorage.setItem(`room-${roomCode}`, JSON.stringify(room));
+      alert(`تم دخول الغرفة باسم ${userName}`);
+    }
+  </script></body>
+</html>
